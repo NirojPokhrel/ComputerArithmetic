@@ -61,6 +61,7 @@ ARCHITECTURE behavior OF CarryLookAhead16bit_tb IS
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
+ 
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
@@ -78,9 +79,9 @@ BEGIN
    begin		
       -- hold reset state for 100 ns.
       wait for 100 ns;	
-			a <= "1010101010101010";
-			b <= "0101010101010101";
-			cin <= '1';
+			a <= "0000100100110000";
+			b <= "0000100000000000";
+			cin <= '0';
       wait;
    end process;
 

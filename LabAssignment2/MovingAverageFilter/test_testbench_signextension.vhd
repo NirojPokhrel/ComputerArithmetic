@@ -69,7 +69,7 @@ BEGIN
    begin		
       -- hold reset state for 100 ns.
       wait for 100 ns;	
-			a<="01000000010";
+			a<="01000000110";
 
       -- insert stimulus here 
 

@@ -53,6 +53,7 @@ ARCHITECTURE behavior OF MovingAverageFilter_tb IS
     END COMPONENT;
     
 
+
    --Inputs
    signal Ain : std_logic_vector(10 downto 0) := (others => '0');
    signal clk : std_logic := '0';
@@ -88,9 +89,13 @@ BEGIN
    stim_proc: process
 		file INPUT_FILE : text open read_mode is "input.txt";
 		file OUTPUT_FILE : text open write_mode is "output.txt";
+		file INPUT_FILE_DEC : text open write_mode is "input_dec.txt";
+		file OUTPUT_FILE_DEC : text open write_mode is "output_dec.txt";
 	
 		variable input_line : LINE;
 		variable output_line: LINE;
+		variable output_line_dec: LINE;
+		variable input_line_dec : LINE;
 		variable str : bit_vector(10 downto 0) ;
 		variable b : boolean;
    begin		
@@ -112,6 +117,11 @@ BEGIN
 			
 				write(output_line,to_bitvector(Qout)); -- write the result to the output line
 				writeline(output_file,output_line);		-- write the line to the output file
+				write(output_line_dec,to_integer(signed(Qout))); -- write the result to the output line
+				writeline(output_file_dec,output_line_dec);		-- write the line to the output file
+				write(input_line_dec,to_integer(signed(Ain))); -- write the result to the output line
+				writeline(INPUT_FILE_DEC,input_line_dec);		-- write the line to the output file
+		
 		
 			end loop;
 

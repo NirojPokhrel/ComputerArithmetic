@@ -121,7 +121,12 @@ BEGIN
 				write(output_line,to_bitvector(q(5)));
 				writeline(output_file,output_line);		-- write the line to the output file
 				write(output_line,to_bitvector(q(6)));
-				-- write the result to the output line
+				writeline(output_file,output_line);		-- write the line to the output file
+				write(output_line,to_bitvector(q(7)));
+				writeline(output_file,output_line);		-- write the line to the output file
+				write(output_line,to_bitvector(q(8)));
+				writeline(output_file,output_line);		-- write the line to the output file
+				write(output_line,to_bitvector(q(9)));
 				writeline(output_file,output_line);		-- write the line to the output file
 		
 		

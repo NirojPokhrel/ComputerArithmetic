@@ -28,7 +28,7 @@ package TYPEDECLARATION is
 -- function <function_name>  (signal <signal_name> : in <type_declaration>) return <type_declaration>;
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
-	type reg_buff is array( 0 to 16 ) of STD_LOGIC_VECTOR( 10 downto 0);
+	type reg_buff is array( 0 to 15 ) of STD_LOGIC_VECTOR( 10 downto 0);
 end TYPEDECLARATION;
 
 package body TYPEDECLARATION is
