@@ -63,7 +63,7 @@ ARCHITECTURE behavior OF MovingAverageFilter_tb IS
    signal Qout : std_logic_vector(10 downto 0);
 
    -- Clock period definitions
-   constant clk_period : time := 5 ns;
+   constant clk_period : time := 10 ns;
  
  
 BEGIN
