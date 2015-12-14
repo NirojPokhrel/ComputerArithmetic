@@ -108,9 +108,6 @@ begin
 					sum=>sum111, cout=>cout111 );
 	cout_out <= '0' & cout111( 13 downto 0) & '0';
 	sum_out <= '0' & sum111;
-	--Qout <= '0' & cout111( 13 downto 0) & '0';
-	
-	-- Carry Look Ahead Level here for generating the carry Look ahead
 	u9: CarryLookAhead16bit port map( a=>sum_out, b=>cout_out, cin=>'0', sum=>total_sum, cout=>cout_temp);
 	Qout <= total_sum(14 downto 4); --divide by 16 and only first 15 bits are useful last bit is not used.
 

@@ -65,6 +65,7 @@ ARCHITECTURE behavior OF MovingAverageFilter_tb IS
    -- Clock period definitions
    constant clk_period : time := 5 ns;
  
+ 
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)

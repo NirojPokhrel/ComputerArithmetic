@@ -31,7 +31,7 @@ use WORK.TYPEDECLARATION.all;
 --use UNISIM.VComponents.all;
 
 entity RegisterArray_16 is
-    Port ( a : in  STD_LOGIC_VECTOR (10 downto 0);
+    Port ( a : in  STD_LOGIC_VECTOR (14 downto 0);
            clk : in  STD_LOGIC;
            rst : in  STD_LOGIC;
            q : inout  reg_buff);
@@ -40,18 +40,17 @@ end RegisterArray_16;
 architecture Behavioral of RegisterArray_16 is
 
 component Register_11bit is
-    Port ( din : in  STD_LOGIC_VECTOR (10 downto 0);
+    Port ( din : in  STD_LOGIC_VECTOR (14 downto 0);
            clk : in  STD_LOGIC;
            rst : in  STD_LOGIC;
-           q : out  STD_LOGIC_VECTOR (10 downto 0));
+           q : out  STD_LOGIC_VECTOR (14 downto 0));
 end component;
 
-signal intermediate_q : reg_buff;
 begin
 
 	q(0) <= a;
 	BUFF_BLOCK:
-		for i in 0 to 14 generate
+		for i in 0 to 15 generate
 			u2: Register_11bit port map( din=>q(i), clk=>clk, rst=>rst, q=>q(i+1)  );
 		end generate BUFF_BLOCK;
 

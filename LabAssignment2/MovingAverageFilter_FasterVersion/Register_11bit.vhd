@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    15:08:25 12/02/2015 
+-- Create Date:    14:06:34 11/26/2015 
 -- Design Name: 
--- Module Name:    RegisterArray_16 - Behavioral 
+-- Module Name:    Register_11bit - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -19,7 +19,6 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use WORK.TYPEDECLARATION.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -30,30 +29,27 @@ use WORK.TYPEDECLARATION.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity RegisterArray_16 is
-    Port ( a : in  STD_LOGIC_VECTOR (10 downto 0);
+entity Register_11bit is
+    Port ( din : in  STD_LOGIC_VECTOR (14 downto 0);
            clk : in  STD_LOGIC;
            rst : in  STD_LOGIC;
-           q : inout  reg_buff);
-end RegisterArray_16;
+           q : out  STD_LOGIC_VECTOR (14 downto 0));
+end Register_11bit;
 
-architecture Behavioral of RegisterArray_16 is
+architecture Behavioral of Register_11bit is
 
-component Register_11bit is
-    Port ( din : in  STD_LOGIC_VECTOR (10 downto 0);
-           clk : in  STD_LOGIC;
-           rst : in  STD_LOGIC;
-           q : out  STD_LOGIC_VECTOR (10 downto 0));
-end component;
-
-signal intermediate_q : reg_buff;
 begin
 
-	q(0) <= a;
-	BUFF_BLOCK:
-		for i in 0 to 14 generate
-			u2: Register_11bit port map( din=>q(i), clk=>clk, rst=>rst, q=>q(i+1)  );
-		end generate BUFF_BLOCK;
+	process( clk, rst )
+		begin
+			if rst = '1' then
+				q <= (others=>'0');
+			else 
+				if clk'event and clk = '1' then
+					q <= din;
+				end if;
+			end if;
+	end process;
 
 
 end Behavioral;

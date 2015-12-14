@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    15:08:25 12/02/2015 
+-- Create Date:    11:17:56 11/25/2015 
 -- Design Name: 
--- Module Name:    RegisterArray_16 - Behavioral 
+-- Module Name:    SignExtensionTo14Bit - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -19,7 +19,6 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use WORK.TYPEDECLARATION.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -30,30 +29,17 @@ use WORK.TYPEDECLARATION.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity RegisterArray_16 is
+entity SignExtensionTo14Bit is
     Port ( a : in  STD_LOGIC_VECTOR (10 downto 0);
-           clk : in  STD_LOGIC;
-           rst : in  STD_LOGIC;
-           q : inout  reg_buff);
-end RegisterArray_16;
+           b : out  STD_LOGIC_VECTOR (14 downto 0));
+end SignExtensionTo14Bit;
 
-architecture Behavioral of RegisterArray_16 is
+architecture Behavioral of SignExtensionTo14Bit is
 
-component Register_11bit is
-    Port ( din : in  STD_LOGIC_VECTOR (10 downto 0);
-           clk : in  STD_LOGIC;
-           rst : in  STD_LOGIC;
-           q : out  STD_LOGIC_VECTOR (10 downto 0));
-end component;
-
-signal intermediate_q : reg_buff;
 begin
 
-	q(0) <= a;
-	BUFF_BLOCK:
-		for i in 0 to 14 generate
-			u2: Register_11bit port map( din=>q(i), clk=>clk, rst=>rst, q=>q(i+1)  );
-		end generate BUFF_BLOCK;
+	b <= ("1111" & a ) when a(10) = '1' else
+		  ("0000" & a );
 
 
 end Behavioral;
