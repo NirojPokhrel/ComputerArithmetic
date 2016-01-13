@@ -27,10 +27,11 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
+use std.textio.all; -- This enables file IO during simulation
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
+USE ieee.numeric_std.ALL;
  
 ENTITY BoothMultiplier16bit_tb IS
 END BoothMultiplier16bit_tb;
@@ -69,13 +70,45 @@ BEGIN
 
    -- Stimulus process
    stim_proc: process
+		file INPUT_FILE1 : text open read_mode is "Input1_mul.txt";
+		file INPUT_FILE2 : text open read_mode is "Input2_mul.txt";
+		file OUTPUT_FILE : text open write_mode is "output.txt";
+		file INPUT_FILE1_DEC : text open write_mode is "input1_dec.txt";
+		file INPUT_FILE2_DEC : text open write_mode is "input2_dec.txt";
+		file OUTPUT_FILE_DEC : text open write_mode is "output_dec.txt";
+	
+		variable input_line1, input_line2 : LINE;
+		variable output_line: LINE;
+		variable output_line_dec: LINE;
+		variable input_line_dec1, input_line_dec2 : LINE;
+		variable str1, str2 : bit_vector(15 downto 0) ;
    begin		
       -- hold reset state for 100 ns.
-      wait for 100 ns;	
-			Ain <= "0000000000001111";
-			Bin <= "0000000000001111";
+--		for i in 0 to 99 loop
+--			wait for 100 ns;	
+--			readline (INPUT_FILE1,input_line1); -- read one line from the input file
+--			read(input_line1,str1);				 -- parse that line for a 10 bit vector
+--			Ain <= to_stdlogicvector(str1);	 -- convert to std_logic_vector type
+--			readline (INPUT_FILE2,input_line2); -- read one line from the input file
+--			read(input_line2,str2);				 -- parse that line for a 10 bit vector
+--			Bin <= to_stdlogicvector(str2);	 -- convert to std_logic_vector type
+--			
+--			
+--			write(output_line,to_bitvector(Product)); -- write the result to the output line
+--			writeline(output_file,output_line);		-- write the line to the output file
+--			write(output_line_dec,to_integer(signed(Product))); -- write the result to the output line
+--			writeline(output_file_dec,output_line_dec);		-- write the line to the output file
+--			write(input_line_dec1,to_integer(signed(Ain))); -- write the result to the output line
+--			writeline(INPUT_FILE1_DEC,input_line_dec1);		-- write the line to the output file
+--			write(input_line_dec2,to_integer(signed(Bin))); -- write the result to the output line
+--			writeline(INPUT_FILE2_DEC,input_line_dec2);		-- write the line to the output file
+--		end loop;
+		wait for 100 ns;
+			Ain <= "0000011100000000";
+			Bin <= "0000000000001110";
 
       -- insert stimulus here 
+
 
       wait;
    end process;
