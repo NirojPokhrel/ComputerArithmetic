@@ -36,15 +36,20 @@ end InitialReciporcalApprox;
 
 architecture Behavioral of InitialReciporcalApprox is
 
-signal IntegerDigitPart: STD_LOGIC_VECTOR( 0 to 6);
-signal val: integer range 0 to 8;
-
 begin
 
-	IntegerDigitPart <= Ain(14 downto 8);
-	Aout(15 downto 8) <= "00000000";
-	Aout(7 downto 1 ) <= IntegerDigitPart;
-	Aout(0) <= '0';
+	process(Ain)
+	begin
+	Aout <= (others =>'0');
+		FOR_LOOP:
+		for i in 15 downto 8 loop
+			if Ain(i) = '1' then
+				Aout(15-i) <= '1';
+				exit FOR_LOOP; 
+			end if;
+		end loop;
+	end process;
+	
 
 end Behavioral;
 

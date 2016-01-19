@@ -104,8 +104,8 @@ BEGIN
 --			writeline(INPUT_FILE2_DEC,input_line_dec2);		-- write the line to the output file
 --		end loop;
 		wait for 100 ns;
-			Ain <= "0000011100000000";
-			Bin <= "0000000000001110";
+   		Ain <= "0110010000000000";
+			Bin <= "0001100100000000";
 
       -- insert stimulus here 
 

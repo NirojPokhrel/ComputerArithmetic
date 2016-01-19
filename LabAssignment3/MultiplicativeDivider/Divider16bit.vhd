@@ -75,7 +75,7 @@ component SubtractFromTwo is
            Aout : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;
 
-signal Ni, Di, Fi, Fi_temp, Fi_temp2 : STD_LOGIC_VECTOR( 15 downto 0 );
+signal Ni, Di, Fi, Fi_temp : STD_LOGIC_VECTOR( 15 downto 0 );
 signal LoadInput, UpdateOutput, IterateCycle: STD_LOGIC;
 signal Ni_next, Di_next, Fi_next: STD_LOGIC_VECTOR( 15 downto 0 );
 signal Product_Ni, Product_Di: STD_LOGIC_VECTOR( 31 downto 0 );

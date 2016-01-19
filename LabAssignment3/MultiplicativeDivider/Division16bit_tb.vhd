@@ -90,8 +90,8 @@ BEGIN
 		rst <= '1';
       wait for 100 ns;	
 			rst <= '0';
-			Ain <= "0101011000000000";
-			Bin <= "0000011100000000";
+			Ain <= "0111111100000000";
+			Bin <= "0000000100000000";
       -- insert stimulus here 
 
       wait;
