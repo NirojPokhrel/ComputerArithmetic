@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    10:38:03 01/25/2016 
+-- Create Date:    16:56:32 01/25/2016 
 -- Design Name: 
--- Module Name:    NormalizationAndRounding - Behavioral 
+-- Module Name:    CheckZero_14bit - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,25 +29,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity NormalizationAndRounding is
-    Port ( Ain : in  STD_LOGIC_VECTOR (29 downto 0);
-           SignificantOut : out  STD_LOGIC_VECTOR (13 downto 0);
-           IncExp : out  STD_LOGIC);
-end NormalizationAndRounding;
+entity CheckZero_14bit is
+    Port ( Ain : in  STD_LOGIC_VECTOR (13 downto 0);
+           IsZero : out  STD_LOGIC);
+end CheckZero_14bit;
 
-architecture Behavioral of NormalizationAndRounding is
-
+architecture Behavioral of CheckZero_14bit is
+signal flag: STD_LOGIC;
 begin
 
 	process(Ain)
 	begin
-		if Ain(29) = '1' then
-			IncExp <= Ain(29);
-			SignificantOut <= Ain(28 downto 15);
-		else
-			IncExp <= '0';
-			SignificantOut <= Ain(27 downto 14);
-		end if;
+		flag <= '1';
+		LOOP_14bit:
+		for i in 0 to 13 loop
+			if Ain(i) = '1' then
+				flag <= '0';
+				exit LOOP_14bit;
+			end if;
+		end loop;
 	end process;
+	IsZero <= flag;
+
 end Behavioral;
 

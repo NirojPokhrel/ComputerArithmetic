@@ -52,7 +52,7 @@ begin
 	Bin_temp <= "01" & Bin;
 	
 	u0: BoothMultiplier16bit port map( Ain=>Ain_temp, Bin=>Bin_temp, Product=>Product_temp );
-	Product <= Produt_temp(29 downto 0);
+	Product <= Product_temp(29 downto 0);
 
 end Behavioral;
 
