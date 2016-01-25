@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   12:01:30 12/22/2015
+-- Create Date:   09:54:29 01/25/2016
 -- Design Name:   
--- Module Name:   D:/ComputerArithmeticAssignment/LabAssignment3/MultiplicativeDivider/Division16bit_tb.vhd
--- Project Name:  MultiplicativeDivider
+-- Module Name:   D:/ComputerArithmeticAssignment/LabAssignment4/FloatPointMultiplier/BoothMultiplier16bit_tb.vhd
+-- Project Name:  FloatPointMultiplier
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: Division16bit
+-- VHDL Test Bench Created by ISE for module: BoothMultiplier16bit
 -- 
 -- Dependencies:
 -- 
@@ -32,66 +32,50 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY Division16bit_tb IS
-END Division16bit_tb;
+ENTITY BoothMultiplier16bit_tb IS
+END BoothMultiplier16bit_tb;
  
-ARCHITECTURE behavior OF Division16bit_tb IS 
+ARCHITECTURE behavior OF BoothMultiplier16bit_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
+    COMPONENT BoothMultiplier16bit
+    PORT(
+         Ain : IN  std_logic_vector(15 downto 0);
+         Bin : IN  std_logic_vector(15 downto 0);
+         Product : OUT  std_logic_vector(31 downto 0)
+        );
+    END COMPONENT;
     
-	component Divider16bit is
-		Port ( Ain : in  STD_LOGIC_VECTOR (15 downto 0);
-           Bin : in  STD_LOGIC_VECTOR (15 downto 0);
-           Clk : in  STD_LOGIC;
-           Rst : in  STD_LOGIC;
-           Quotient : out  STD_LOGIC_VECTOR (15 downto 0));
-	end component;
-    
-	 
 
    --Inputs
    signal Ain : std_logic_vector(15 downto 0) := (others => '0');
    signal Bin : std_logic_vector(15 downto 0) := (others => '0');
-   signal Clk : std_logic := '0';
-   signal Rst : std_logic := '0';
 
  	--Outputs
-   signal Quotient : std_logic_vector(15 downto 0);
-
-   -- Clock period definitions
-   constant clk_period : time := 1 ns;
+   signal Product : std_logic_vector(31 downto 0);
+   -- No clocks detected in port list. Replace <clock> below with 
+   -- appropriate port name 
+ 
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: Divider16bit PORT MAP (
+   uut: BoothMultiplier16bit PORT MAP (
           Ain => Ain,
           Bin => Bin,
-          Clk => Clk,
-          Rst => Rst,
-          Quotient => Quotient
+          Product => Product
         );
 
-   -- Clock process definitions
-   clk_process :process
-   begin
-		clk <= '0';
-		wait for clk_period/2;
-		clk <= '1';
-		wait for clk_period/2;
-   end process;
  
 
    -- Stimulus process
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-		rst <= '1';
       wait for 100 ns;	
-			rst <= '0';
-			Ain <= "0111111100000000";
-			Bin <= "0000000100000000";
+
+
       -- insert stimulus here 
 
       wait;

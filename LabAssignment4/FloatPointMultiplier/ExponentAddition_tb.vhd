@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   12:01:30 12/22/2015
+-- Create Date:   22:20:18 01/24/2016
 -- Design Name:   
--- Module Name:   D:/ComputerArithmeticAssignment/LabAssignment3/MultiplicativeDivider/Division16bit_tb.vhd
--- Project Name:  MultiplicativeDivider
+-- Module Name:   D:/ComputerArithmeticAssignment/LabAssignment4/FloatPointMultiplier/ExponentAddition_tb.vhd
+-- Project Name:  FloatPointMultiplier
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: Division16bit
+-- VHDL Test Bench Created by ISE for module: ExponentAddition
 -- 
 -- Dependencies:
 -- 
@@ -32,66 +32,58 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY Division16bit_tb IS
-END Division16bit_tb;
+ENTITY ExponentAddition_tb IS
+END ExponentAddition_tb;
  
-ARCHITECTURE behavior OF Division16bit_tb IS 
+ARCHITECTURE behavior OF ExponentAddition_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
+    COMPONENT ExponentAddition
+    PORT(
+         Ain : IN  std_logic_vector(7 downto 0);
+         Bin : IN  std_logic_vector(7 downto 0);
+         Cin : IN  std_logic;
+         Sum : OUT  std_logic_vector(7 downto 0);
+         Cout : OUT  std_logic
+        );
+    END COMPONENT;
     
-	component Divider16bit is
-		Port ( Ain : in  STD_LOGIC_VECTOR (15 downto 0);
-           Bin : in  STD_LOGIC_VECTOR (15 downto 0);
-           Clk : in  STD_LOGIC;
-           Rst : in  STD_LOGIC;
-           Quotient : out  STD_LOGIC_VECTOR (15 downto 0));
-	end component;
-    
-	 
+
 
    --Inputs
-   signal Ain : std_logic_vector(15 downto 0) := (others => '0');
-   signal Bin : std_logic_vector(15 downto 0) := (others => '0');
-   signal Clk : std_logic := '0';
-   signal Rst : std_logic := '0';
+   signal Ain : std_logic_vector(7 downto 0) := (others => '0');
+   signal Bin : std_logic_vector(7 downto 0) := (others => '0');
+   signal Cin : std_logic := '0';
 
  	--Outputs
-   signal Quotient : std_logic_vector(15 downto 0);
-
-   -- Clock period definitions
-   constant clk_period : time := 1 ns;
+   signal Sum : std_logic_vector(7 downto 0);
+	signal Cout : std_logic;
+   -- No clocks detected in port list. Replace <clock> below with 
+   -- appropriate port name 
+ 
+ 
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: Divider16bit PORT MAP (
+   uut: ExponentAddition PORT MAP (
           Ain => Ain,
           Bin => Bin,
-          Clk => Clk,
-          Rst => Rst,
-          Quotient => Quotient
+          Cin => Cin,
+          Sum => Sum,
+          Cout => Cout
         );
 
-   -- Clock process definitions
-   clk_process :process
-   begin
-		clk <= '0';
-		wait for clk_period/2;
-		clk <= '1';
-		wait for clk_period/2;
-   end process;
- 
 
    -- Stimulus process
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-		rst <= '1';
       wait for 100 ns;	
-			rst <= '0';
-			Ain <= "0111111100000000";
-			Bin <= "0000000100000000";
+			Ain <= "10010110";
+			Bin <= "01100100";
+			Cin <= '0';
       -- insert stimulus here 
 
       wait;

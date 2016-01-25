@@ -1,0 +1,13 @@
+
+i. Checking Overflow
+	- Both are negative and negative: end result should be negative but is positive
+	- Both are positive and positive and end result should be positive but is negative
+	
+ii. Checking Underflow
+	– detected when during the left shift the exponent E = 1 and the significand
+		not normalized
+	- set underflow flag, set result exponent to E = 0
+Does underflow ever occurs in Floating point multiplication ?
+
+iii. Can Exponent be 0. Yes that is -127.
+iv. Can Significant be 0. Yes that is 1.00000
